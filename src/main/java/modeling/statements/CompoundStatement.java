@@ -24,28 +24,27 @@ package modeling.statements;
  * https://dev.mysql.com/doc/refman/8.0/en/sql-compound-statements.html
  */
 public class CompoundStatement {
-    private String statement;
-    private String delimiter;
+	private String statement;
+	private String delimiter;
 
-    public String getStatement() {
-        return statement;
-    }
+	public String getStatement() {
+		return statement;
+	}
 
-    public void setStatement(String statement) {
-        this.statement = statement;
-    }
+	public void setStatement(String statement) {
+		this.statement = statement;
+	}
 
-    @Override
-    public String toString() {
-        return "BEGIN \r\n" + statement + "END " + delimiter;
-    }
+	@Override
+	public String toString() {
+		return statement;
+	}
 
-    public String getDelimiter() {
-        return delimiter;
-    }
+	public String getDelimiter() {
+		return delimiter;
+	}
 
-    public void setDelimiter(String delimiter) {
-        this.delimiter = delimiter;
-    }
-
+	public void setDelimiter(String delimiter) {
+		this.delimiter = delimiter;
+	}
 }

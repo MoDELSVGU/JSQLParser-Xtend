@@ -17,26 +17,26 @@ limitations under the License.
 @author: hoangnguyen (hoang.nguyen@inf.ethz.ch)
 ***************************************************************************/
 
-package modeling.statements.create;
+package modeling.templates;
 
-import modeling.templates.Template;
-
-public class CreateInvariantFunction extends CreateFunction {
-    private String sqlInvariant;
-
-    @Override
-    public String toString() {
-        return String.format(
-            Template.CREATE_INVARIANT_FUNCTION, delimiter,
-            function.getName(), sqlInvariant);
-    }
-
-    public String getSqlInvariant() {
-        return sqlInvariant;
-    }
-
-    public void setSqlInvariant(String sqlInvariant) {
-        this.sqlInvariant = sqlInvariant;
-    }
-
+public class SQLTemplate {
+	public static final String CREATE_DATABASE = 
+	"CREATE DATABASE %1$s \r\n" + 
+	" DEFAULT CHARACTER SET utf8 \r\n" +
+	" DEFAULT COLLATE utf8_general_ci";
+	
+	public static final String CREATE_FUNCTION = 
+	"/* FUNC: %2$s */\r\n" + 
+	"DELIMITER %1$s\r\n" + 
+	"CREATE FUNCTION %2$s(%3$s)\r\n" + 
+	"RETURNS INT DETERMINISTIC\r\n" + 
+	"%4$s" + 
+	"DELIMITER ;\r\n";
+	
+	public static final String CREATE_PROC = 
+	"/* %1$s */\r\n" + 
+	"DELIMITER %5$s\r\n" + 
+	"CREATE PROCEDURE %2$s(%3$s)\r\n" +
+	"%4$s\r\n" + 
+	"DELIMITER ;\r\n";
 }

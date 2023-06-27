@@ -49,6 +49,10 @@ public class Function implements MultiPartName {
 		return fqn;
 	}
 
+	public Function() {
+		parameters = new HashMap<>();
+	}
+
 	public Database getDatabase() {
 		return database;
 	}
@@ -115,6 +119,14 @@ public class Function implements MultiPartName {
 			}
 		}
 		return s;
+	}
+
+	public void setDelimiter(String delimiter) {
+		this.statement.setDelimiter(delimiter);
+	}
+
+	public String getDelimiter() {
+		return this.statement.getDelimiter();
 	}
 
 }
