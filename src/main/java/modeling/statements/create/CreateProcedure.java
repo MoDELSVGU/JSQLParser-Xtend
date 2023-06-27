@@ -20,10 +20,11 @@ limitations under the License.
 package modeling.statements.create;
 
 import modeling.statements.SQLStoredProcedure;
-import modeling.templates.Template;
+import modeling.templates.SQLTemplate;
 
 public class CreateProcedure {
 	private SQLStoredProcedure storedProcedure;
+	private String delimiter;
 
 	public SQLStoredProcedure getStoredProcedure() {
 		return storedProcedure;
@@ -34,7 +35,15 @@ public class CreateProcedure {
 	}
 
 	public String toString() {
-		return String.format(Template.CREATE_PROC, storedProcedure.getComments(), storedProcedure.getName(),
-				storedProcedure.printParameters(), storedProcedure.toString());
+		return String.format(SQLTemplate.CREATE_PROC, storedProcedure.getComments(), storedProcedure.getName(),
+				storedProcedure.printParameters(), storedProcedure.toString(), delimiter);
+	}
+
+	public String getDelimiter() {
+		return delimiter;
+	}
+
+	public void setDelimiter(String delimiter) {
+		this.delimiter = delimiter;
 	}
 }

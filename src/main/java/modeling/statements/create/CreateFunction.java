@@ -20,7 +20,7 @@ limitations under the License.
 package modeling.statements.create;
 
 import modeling.statements.Function;
-import modeling.templates.Template;
+import modeling.templates.SQLTemplate;
 
 public class CreateFunction {
 
@@ -33,6 +33,7 @@ public class CreateFunction {
 
 	public void setFunction(Function function) {
 		this.function = function;
+		this.function.setDelimiter(delimiter);
 	}
 
 	public String getAuthFunParameters() {
@@ -41,9 +42,8 @@ public class CreateFunction {
 
 	@Override
 	public String toString() {
-		function.getStatement().setDelimiter(delimiter);
-		return String.format(Template.CREATE_FUNCTION, delimiter, function.getName(), function.getFunParameters(),
-				function.getStatement());
+		return String.format(SQLTemplate.CREATE_FUNCTION, delimiter, function.getName(),
+				function.getFunParametersWithType(), function.getStatement());
 	}
 
 	public String getDelimiter() {

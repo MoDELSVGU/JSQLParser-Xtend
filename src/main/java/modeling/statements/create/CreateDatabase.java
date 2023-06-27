@@ -19,7 +19,7 @@ limitations under the License.
 
 package modeling.statements.create;
 
-import modeling.templates.Template;
+import modeling.templates.SQLTemplate;
 import net.sf.jsqlparser.schema.Database;
 
 public class CreateDatabase {
@@ -27,7 +27,7 @@ public class CreateDatabase {
 
     @Override
     public String toString() {
-        return String.format(Template.CREATE_DATABASE,
+        return String.format(SQLTemplate.CREATE_DATABASE,
             database.getDatabaseName());
     }
 
