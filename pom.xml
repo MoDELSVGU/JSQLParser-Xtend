@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.modelsvgu</groupId>
 	<artifactId>sqlj</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>An extension of JSQLParser library that parses SQL string to Java object hierarchy.</description>
 	<url>https://github.com/MoDELSVGU/JSQLParser-Xtend</url>
