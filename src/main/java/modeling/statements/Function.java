@@ -19,7 +19,9 @@ limitations under the License.
 
 package modeling.statements;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import net.sf.jsqlparser.schema.Database;
 import net.sf.jsqlparser.schema.MultiPartName;
@@ -29,7 +31,7 @@ public class Function implements MultiPartName {
 	private Database database;
 	private String name;
 	private CompoundStatement statement;
-	protected HashMap<String, String> parameters;
+	protected ArrayList<Variable> variables;
 
 	@Override
 	public String getFullyQualifiedName() {
@@ -50,7 +52,7 @@ public class Function implements MultiPartName {
 	}
 
 	public Function() {
-		parameters = new HashMap<>();
+		variables = new ArrayList<Variable>();
 	}
 
 	public Database getDatabase() {
@@ -81,12 +83,12 @@ public class Function implements MultiPartName {
 		this.statement = statement;
 	}
 
-	public HashMap<String, String> getParameters() {
-		return parameters;
+	public ArrayList<Variable> getVariables() {
+		return variables;
 	}
 
-	public void setParameters(HashMap<String, String> parameters) {
-		this.parameters = parameters;
+	public void setVariables(ArrayList<Variable> variables) {
+		this.variables = variables;
 	}
 
 	/*
@@ -94,9 +96,10 @@ public class Function implements MultiPartName {
 	 */
 	public String getFunParametersWithType() {
 		String s = "";
-		int countPars = parameters.size();
-		for (String key : parameters.keySet()) {
-			s = s.concat(String.format("%s %s", key, parameters.get(key)));
+		int countPars = variables.size();
+//		Collections.sort(variables, new VariableComparator());
+		for (Variable v : variables) {
+			s = s.concat(String.format("%s %s", v.getName(), v.getType()));
 			countPars = countPars - 1;
 			if (countPars > 0) {
 				s = String.format("%s, ", s);
@@ -110,9 +113,10 @@ public class Function implements MultiPartName {
 	 */
 	public String getFunParameters() {
 		String s = "";
-		int countPars = parameters.size();
-		for (String key : parameters.keySet()) {
-			s = s.concat(String.format("%s", key));
+		int countPars = variables.size();
+//		Collections.sort(variables, new VariableComparator());
+		for (Variable v : variables) {
+			s = s.concat(String.format("%s", v.getName()));
 			countPars = countPars - 1;
 			if (countPars > 0) {
 				s = String.format("%s, ", s);
@@ -128,5 +132,4 @@ public class Function implements MultiPartName {
 	public String getDelimiter() {
 		return this.statement.getDelimiter();
 	}
-
 }
